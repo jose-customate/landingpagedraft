@@ -1,0 +1,648 @@
+/* -----------------------------------
+   Global Reset & Base Styles
+----------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* -----------------------------------
+   Top Thin Black Banner
+----------------------------------- */
+.top-banner {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  position: relative;
+}
+
+/* Language Dropdown Styles */
+.language-dropdown {
+  position: relative;
+}
+.language-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  background-color: #fff;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+.dropdown-content a {
+  color: #333;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* -----------------------------------
+   Persistent Navigation Bar (fija)
+----------------------------------- */
+.persistent-navbar {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+.persistent-navbar .navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.persistent-navbar a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 10px;
+  font-size: 1rem;
+}
+.persistent-navbar .navbar-left {
+  display: flex;
+  align-items: center;
+}
+.persistent-navbar .navbar-left img.logo {
+  height: 40px;
+  margin-right: 15px;
+}
+.persistent-navbar .navbar-right {
+  display: flex;
+  align-items: center;
+}
+.persistent-navbar .navbar-right a {
+  margin-left: 15px;
+}
+.persistent-navbar .navbar-right a.signup {
+  font-weight: bold;
+}
+
+/* -----------------------------------
+   Frame 1: Main Content
+----------------------------------- */
+.frame1 {
+  padding-top: 120px;
+  min-height: 100vh;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.frame1-content {
+  position: relative;
+  text-align: left;
+}
+.frame1 .title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+.frame1 .subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* -----------------------------------
+   Frame 2: Cómo funciona el producto
+----------------------------------- */
+.frame2 {
+  padding: 50px 5%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.frame2-container {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+.frame2-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
+/* -----------------------------------
+   Frame 3: Benefits
+----------------------------------- */
+.frame3 {
+  padding: 50px 5%;
+  background-color: #f8f8f8;
+}
+.frame3-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.frame3-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.benefits-row.row1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.benefits-row.row2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.benefits-row.row2 .benefit-card {
+  aspect-ratio: 2 / 1;
+}
+.benefits-row.row3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.benefit-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 1;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.benefit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  z-index: -1;
+}
+.benefit-card.top-service {
+  background-image: url('https://github.com/jose-customate/LPBlurry1/blob/main/LPBlurry1.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.lowest-time {
+  background-image: url('https://github.com/jose-customate/LPBlurry2/blob/main/LPBlurry2.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.multichannel {
+  background-image: url('https://github.com/jose-customate/LPBlurry3/blob/main/LPBlurry3.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.reduce-expenses {
+  background-image: url('https://github.com/jose-customate/LPBlurry4/blob/main/LPBlurry4.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.increase-income {
+  background-image: url('https://github.com/jose-customate/LPBlurry5/blob/main/LPBlurry5.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.integrations {
+  background-image: url('https://github.com/jose-customate/LPBlurry6/blob/main/LPBlurry6.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.advanced-ai {
+  background-image: url('https://github.com/jose-customate/LPBlurry7/blob/main/LPBlurry7.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+.benefit-card.continuous-learning {
+  background-image: url('https://github.com/jose-customate/LPBlurry8/blob/main/LPBlurry8.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+
+/* -----------------------------------
+   Frame 4: Minimal Pricing Table
+----------------------------------- */
+.frame4 {
+  padding: 60px 5%;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.frame4-title {
+  font-size: 2.2rem;
+  text-align: left;
+  margin-bottom: 0;
+  color: #222;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.billing-options-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 18px 0 16px 0;
+}
+
+.billing-options {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1rem;
+  color: #444;
+  user-select: none;
+}
+
+.bill-me-label {
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  color: #888;
+  font-variant: small-caps;
+  font-weight: 600;
+  margin-right: 8px;
+  opacity: 0.85;
+}
+
+.billing-options label {
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.billing-options input[type="radio"] {
+  accent-color: #2563eb;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+}
+
+.pricing-table-wrapper {
+  overflow-x: auto;
+}
+
+.pricing-table-minimal {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(30, 41, 59, 0.06);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pricing-table-minimal thead th,
+.pricing-table-minimal tbody td {
+  border: 1px solid #e5e7eb;
+}
+
+.pricing-table-minimal thead th {
+  background: #fff;
+  color: #222;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 18px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pricing-table-minimal thead th.premium-header {
+  background: linear-gradient(135deg, #FFA500 0%, #FF4500 100%);
+  color: #fff;
+}
+
+.pricing-table-minimal tbody td {
+  background: #fff;
+  color: #222;
+  font-size: 1.02rem;
+  font-weight: 400;
+  padding: 18px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.pricing-table-minimal tbody td.premium-bg {
+  background: linear-gradient(135deg, #FFA500 0%, #FF4500 100%);
+  color: #fff;
+}
+.pricing-table-minimal tbody td.premium-bg small,
+.pricing-table-minimal tbody td.premium-bg ul,
+.pricing-table-minimal tbody td.premium-bg li {
+  color: #fff;
+}
+
+.pricing-table-minimal tbody td:first-child,
+.pricing-table-minimal thead th:first-child {
+  text-align: left;
+  font-weight: 500;
+  min-width: 140px;
+}
+
+.pricing-table-minimal ul {
+  list-style: disc inside;
+  margin: 0;
+  padding-left: 18px;
+  text-align: left;
+  font-size: 0.98rem;
+}
+
+.pricing-table-minimal small {
+  color: #666;
+  font-size: 0.93rem;
+}
+
+.pricing-table-minimal tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.pricing-table-minimal thead th:first-child {
+  border-top-left-radius: 18px;
+}
+.pricing-table-minimal thead th:last-child {
+  border-top-right-radius: 18px;
+}
+.pricing-table-minimal tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 18px;
+  border-left: 1px solid #e5e7eb;
+}
+.pricing-table-minimal tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 18px;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Estilo para "/month" en gris */
+.per-month {
+  color: #888;
+  font-size: 0.95em;
+  margin-left: 2px;
+}
+
+/* -----------------------------------
+   Frame 5: Embrace the Future
+----------------------------------- */
+.frame5 {
+    padding: 70px 5%; /* Aumentar el padding general */
+    background: transparent;
+    position: relative;
+}
+
+.frame5-background {
+    background-image: url('https://github.com/jose-customate/NightSky1/blob/main/NightSky1.png?raw=true');
+    background-size: cover;
+    border: 1px solid #444; /* Margen gris oscuro */
+    border-radius: 30px;
+    padding: 40px; /* Padding interno */
+    text-align: center;
+}
+
+.frame5-title {
+    font-size: 2.5rem; /* Ajusta según tu estilo inicial */
+    font-family: 'Arial', sans-serif; /* Aquí debes poner la fuente utilizada en tu código inicial */
+    color: #fff; /* Texto blanco */
+    margin-bottom: 15px;
+}
+
+.frame5-subtitle {
+    font-size: 1.2rem; /* Ajusta según tu estilo inicial */
+    font-family: 'Arial', sans-serif; /* Aquí debes poner la fuente utilizada en tu código inicial */
+    color: #eee; /* Texto gris claro */
+    margin-bottom: 40px; /* Aumentar el espacio entre el subtítulo y los botones */
+}
+
+.frame5-buttons {
+    display: flex;
+    flex-direction: column; /* Botones uno encima del otro */
+    align-items: center; /* Centra los botones */
+    gap: 20px; /* Aumentar el espacio entre los botones */
+    margin-top: 70px; /* Aumentar margen superior para empujar los botones aún más abajo */
+}
+
+.button {
+    padding: 15px 25px; /* Aumentar el tamaño de los botones */
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s;
+    font-family: 'Arial', sans-serif; /* Aquí debes poner la fuente utilizada en tu código inicial */
+    width: 200px; /* Ajustar el ancho para que los botones sean del mismo tamaño */
+    display: flex; /* Flex para un mejor posicionamiento */
+    justify-content: center; /* Centra el texto dentro del botón */
+}
+
+.sign-up {
+    background: linear-gradient(135deg, #3DBE29, #A0DAB8); /* Degradado de verdes */
+}
+
+.contact-customate {
+    background: linear-gradient(135deg, #6B5B95, #8CBBF1); /* Colores brillantes diferentes */
+}
+
+.button:hover {
+    opacity: 0.9; /* Efecto de hover */
+}
+
+@media (max-width: 800px) {
+  .billing-options-row {
+    justify-content: flex-start;
+    margin-bottom: 12px;
+  }
+  .pricing-table-minimal {
+    font-size: 0.93rem;
+    min-width: 600px;
+  }
+  .frame4-container {
+    padding: 0;
+  }
+}
+
+/* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.frame6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.left-section {
+  text-align: left;
+  width: 100%;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 5px; /* Reduced space between logo and slogan */
+}
+
+.slogan {
+  color: gray;
+  font-size: 18px;
+  margin-bottom: 60px; /* More vertical space between slogan and final paragraph */
+}
+
+.description {
+  color: lightgray;
+  font-size: 12px; /* Smaller-sized letters */
+  text-align: center; /* Centered horizontally */
+  margin: 0 auto 80px auto; /* Centered on the horizontal axis and spaced vertically */
+  max-width: 600px; /* Adapts for different screen sizes */
+  word-wrap: break-word;
+}
+
+.bottom-bar {
+  width: 100%; /* Full-width horizontal bar */
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.bottom-bar .links {
+  display: flex;
+  gap: 15px; /* Spacing between left-side links */
+}
+
+.bottom-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.bottom-bar a:hover {
+  text-decoration: underline;
+}
+
+.bottom-bar .feedback {
+  color: white;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* Center vertically */
+  padding: 20px;
+  border-radius: 8px; /* Curved corners */
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.modal-content button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-content button:hover {
+  background-color: #e69500;
+}
