@@ -39,6 +39,56 @@ document.addEventListener('DOMContentLoaded', function () {
   const contactClose = contactModal.querySelector('.close');
   const sendContactBtn = document.getElementById('sendContact');
 
+  // Frame 1
+function updateArrow() {
+  const svg = document.getElementById('dynamic-arrow');
+  const path = document.getElementById('arrow-path');
+  const subtitle = document.querySelector('.subtitle');
+  
+  // Frame1: Get positions
+  const subtitleRect = subtitle.getBoundingClientRect();
+  
+  // Frame1: Calculate starting point (below subtitle with additional space)
+  const startX = subtitleRect.left + subtitleRect.width / 2;
+  const startY = subtitleRect.bottom + 30; // Additional space below the subtitle
+  
+  // Frame1: Calculate end point with distance from corner
+  const endX = window.innerWidth - 250; // 250px from right edge
+  const endY = window.innerHeight - 250; // 250px from bottom edge
+  
+  // Frame1: Convert to viewBox coordinates
+  const svgRect = svg.getBoundingClientRect();
+  const startXPerc = (startX / svgRect.width) * 100;
+  const startYPerc = (startY / svgRect.height) * 100;
+  const endXPerc = (endX / svgRect.width) * 100;
+  const endYPerc = (endY / svgRect.height) * 100;
+  
+  // Frame1: Control points for curve
+  const ctrlX1 = startXPerc;
+  const ctrlY1 = startYPerc + 15;
+  const ctrlX2 = endXPerc - 10;
+  const ctrlY2 = endYPerc - 10;
+  
+  // Frame1: Update path
+  path.setAttribute('d', `M ${startXPerc} ${startYPerc} C ${ctrlX1} ${ctrlY1}, ${ctrlX2} ${ctrlY2}, ${endXPerc} ${endYPerc}`);
+  
+  // Frame1: Reset animation
+  path.style.animation = 'none';
+  path.offsetHeight; // Force reflow
+  path.style.animation = 'drawArrow 2s forwards ease-in-out';
+}
+
+// Frame1: Update arrow on load and resize
+window.addEventListener('load', updateArrow);
+window.addEventListener('resize', updateArrow);
+
+// Frame1: Ensure layout has fully rendered before initial positioning
+setTimeout(updateArrow, 100);
+
+// Frame1: Update every few seconds to handle potential layout changes
+setInterval(updateArrow, 2000);
+
+
   // Open Feedback Modal
   feedbackLink.addEventListener('click', function (e) {
     e.preventDefault();
