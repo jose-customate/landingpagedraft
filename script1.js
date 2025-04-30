@@ -1,93 +1,103 @@
+// JS
+
+// Wait for DOM to load
 document.addEventListener("DOMContentLoaded", function () {
+  // -----------------------
   // Language dropdown
+  // -----------------------
   const languageButton = document.querySelector(".language-button");
   const dropdownContent = document.querySelector(".dropdown-content");
-  languageButton.addEventListener("click", function (e) {
-    dropdownContent.style.display =
-      dropdownContent.style.display === "block" ? "none" : "block";
-    e.stopPropagation();
-  });
-  // Cierra el dropdown al hacer clic fuera
-  document.addEventListener("click", function () {
-    dropdownContent.style.display = "none";
-  });
-  // Pricing toggle
+
+  if (languageButton && dropdownContent) {
+    languageButton.addEventListener("click", function (e) {
+      dropdownContent.style.display =
+        dropdownContent.style.display === "block" ? "none" : "block";
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", function () {
+      dropdownContent.style.display = "none";
+    });
+  }
+
+  // -----------------------
+  // Pricing toggle (monthly/annually)
+  // -----------------------
   const radios = document.querySelectorAll('input[name="billing"]');
   radios.forEach(radio => {
-    radio.addEventListener('change', function() {
+    radio.addEventListener("change", function () {
       if (this.value === "monthly") {
-        document.querySelectorAll('.monthly').forEach(el => el.style.display = "inline");
-        document.querySelectorAll('.annually').forEach(el => el.style.display = "none");
+        document.querySelectorAll(".monthly").forEach(el => el.style.display = "inline");
+        document.querySelectorAll(".annually").forEach(el => el.style.display = "none");
       } else {
-        document.querySelectorAll('.monthly').forEach(el => el.style.display = "none");
-        document.querySelectorAll('.annually').forEach(el => el.style.display = "inline");
+        document.querySelectorAll(".monthly").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".annually").forEach(el => el.style.display = "inline");
       }
     });
   });
+
+  // -----------------------
+  // Custom dropdown (navbar)
+  // -----------------------
+  const dropdownToggle = document.querySelector(".dropdown-toggle");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      dropdownMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".dropdown")) {
+        dropdownMenu.classList.remove("show");
+      }
+    });
+
+    dropdownMenu.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  }
+
+  // -----------------------
+  // Frame1 Dynamic Arrow
+  // -----------------------
+  function updateArrow() {
+    const svg = document.getElementById("dynamic-arrow");
+    const path = document.getElementById("arrow-path");
+    const subtitle = document.querySelector(".subtitle");
+
+    if (!svg || !path || !subtitle) return;
+
+    const subtitleRect = subtitle.getBoundingClientRect();
+    const startX = subtitleRect.left + subtitleRect.width / 2;
+    const startY = subtitleRect.bottom + 30;
+    const endX = window.innerWidth - 250;
+    const endY = window.innerHeight - 250;
+
+    const svgRect = svg.getBoundingClientRect();
+    const startXPerc = (startX / svgRect.width) * 100;
+    const startYPerc = (startY / svgRect.height) * 100;
+    const endXPerc = (endX / svgRect.width) * 100;
+    const endYPerc = (endY / svgRect.height) * 100;
+
+    const ctrlX1 = startXPerc;
+    const ctrlY1 = startYPerc + 15;
+    const ctrlX2 = endXPerc - 10;
+    const ctrlY2 = endYPerc - 10;
+
+    path.setAttribute("d", `M ${startXPerc} ${startYPerc} C ${ctrlX1} ${ctrlY1}, ${ctrlX2} ${ctrlY2}, ${endXPerc} ${endYPerc}`);
+
+    path.style.animation = "none";
+    path.offsetHeight; // Trigger reflow
+    path.style.animation = "drawArrow 2s forwards ease-in-out";
+  }
+
+  window.addEventListener("load", updateArrow);
+  window.addEventListener("resize", updateArrow);
+  setTimeout(updateArrow, 100);
+  setInterval(updateArrow, 2000);
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Feedback modal elements
-  const feedbackModal = document.getElementById('feedbackModal');
-  const feedbackLink = document.querySelector('.feedback');
-  const feedbackClose = feedbackModal.querySelector('.close');
-  const sendFeedbackBtn = document.getElementById('sendFeedback');
-
-  // Contact modal elements
-  const contactModal = document.getElementById('contactModal');
-  const contactLink = document.querySelector('.contactLink');
-  const contactClose = contactModal.querySelector('.close');
-  const sendContactBtn = document.getElementById('sendContact');
-
-  // Frame 1
-function updateArrow() {
-  const svg = document.getElementById('dynamic-arrow');
-  const path = document.getElementById('arrow-path');
-  const subtitle = document.querySelector('.subtitle');
-  
-  // Frame1: Get positions
-  const subtitleRect = subtitle.getBoundingClientRect();
-  
-  // Frame1: Calculate starting point (below subtitle with additional space)
-  const startX = subtitleRect.left + subtitleRect.width / 2;
-  const startY = subtitleRect.bottom + 30; // Additional space below the subtitle
-  
-  // Frame1: Calculate end point with distance from corner
-  const endX = window.innerWidth - 250; // 250px from right edge
-  const endY = window.innerHeight - 250; // 250px from bottom edge
-  
-  // Frame1: Convert to viewBox coordinates
-  const svgRect = svg.getBoundingClientRect();
-  const startXPerc = (startX / svgRect.width) * 100;
-  const startYPerc = (startY / svgRect.height) * 100;
-  const endXPerc = (endX / svgRect.width) * 100;
-  const endYPerc = (endY / svgRect.height) * 100;
-  
-  // Frame1: Control points for curve
-  const ctrlX1 = startXPerc;
-  const ctrlY1 = startYPerc + 15;
-  const ctrlX2 = endXPerc - 10;
-  const ctrlY2 = endYPerc - 10;
-  
-  // Frame1: Update path
-  path.setAttribute('d', `M ${startXPerc} ${startYPerc} C ${ctrlX1} ${ctrlY1}, ${ctrlX2} ${ctrlY2}, ${endXPerc} ${endYPerc}`);
-  
-  // Frame1: Reset animation
-  path.style.animation = 'none';
-  path.offsetHeight; // Force reflow
-  path.style.animation = 'drawArrow 2s forwards ease-in-out';
-}
-
-// Frame1: Update arrow on load and resize
-window.addEventListener('load', updateArrow);
-window.addEventListener('resize', updateArrow);
-
-// Frame1: Ensure layout has fully rendered before initial positioning
-setTimeout(updateArrow, 100);
-
-// Frame1: Update every few seconds to handle potential layout changes
-setInterval(updateArrow, 2000);
-
 
   // Open Feedback Modal
   feedbackLink.addEventListener('click', function (e) {
